@@ -14,22 +14,21 @@ exports.check = async function check(publicDocsURL, gitBookConfigurationURL, log
         }
     }
 
-    logger.debug(`Found ${content.length - redirectsStartingLine - 1} redirect rules. Starting to check...`);
-    logger.debug('---------------------------');
+    logger.info(`Found ${content.length - redirectsStartingLine - 1} redirect rules. Starting to check...`);
 
-    let brokenRedirects = false;
+    const brokenRedirectRules = [];
     for (let i = redirectsStartingLine + 1; i < content.length; i++) {
         const redirectRule = content[i].replace(/\s/g, '').split(':');
         if (redirectRule.length > 0 && redirectRule[0].length > 0) {
             const url = `${publicDocsURL}/${redirectRule[0]}`;
             try {
                 await axios.get(url);
-                logger.debug(`Rule ${redirectRule[0]} works`);
+                logger.info(`Rule ${redirectRule[0]} works`);
             } catch (error) {
                 logger.error(`Rule ${redirectRule[0]} is broken: URL ${url} redirecting to ${redirectRule[1]} gave response ${error}`);
-                brokenRedirects = true;
+                brokenRedirectRules.push(redirectRule);
             }
         }
     }
-    return brokenRedirects;
+    return brokenRedirectRules;
 };
