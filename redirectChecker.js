@@ -2,9 +2,9 @@
  * Copyright 2024 steadybit GmbH. All rights reserved.
  */
 
-import axios from 'axios';
+const axios = require('axios');
 
-export async function check(publicDocsURL, gitBookConfigurationURL, logger) {
+exports.check = async function check(publicDocsURL, gitBookConfigurationURL, logger) {
     const response = await axios.get(gitBookConfigurationURL);
     const content = response.data.split('\n');
     let redirectsStartingLine = 0;
@@ -18,7 +18,6 @@ export async function check(publicDocsURL, gitBookConfigurationURL, logger) {
     logger.debug('---------------------------');
 
     let brokenRedirects = false;
-    redirectsStartingLine += 138;
     for (let i = redirectsStartingLine + 1; i < content.length; i++) {
         const redirectRule = content[i].replace(/\s/g, '').split(':');
         if (redirectRule.length > 0 && redirectRule[0].length > 0) {
@@ -33,4 +32,4 @@ export async function check(publicDocsURL, gitBookConfigurationURL, logger) {
         }
     }
     return brokenRedirects;
-}
+};
