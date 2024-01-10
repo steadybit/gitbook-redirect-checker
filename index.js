@@ -13,9 +13,8 @@ check(publicDocsURL, gitBookConfigurationURL, logger)
     .then((brokenRedirects) => {
         if (brokenRedirects.length > 0) {
             core.info('');
-            core.setFailed(`Found non-working redirects:`);
             brokenRedirects.forEach((brokenRedirect) => {
-                core.setFailed(`Redirect ${brokenRedirect[0]} to ${brokenRedirect[1]} isn't working`);
+                core.setFailed(`Non-working redirect: from ${brokenRedirect[0]} to ${brokenRedirect[1]}`);
             });
         }
     })
