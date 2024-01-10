@@ -11,8 +11,8 @@ jobs:
     name: Check Redirects Job
     timeout-minutes: 60
     steps:
-      - name: Run GITHUB-77 (Health Check)
-        uses: steadybit/gitbook-redirect-checker@7bb8f320bee3e6d19905fbad854cd9ed6f4cfdc1
+      - name: Check Redirects
+        uses: steadybit/gitbook-redirect-checker@v0.1
         if: "!cancelled()"
 
       - name: Notify Slack channel
