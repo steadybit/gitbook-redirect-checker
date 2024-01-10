@@ -34476,35 +34476,6 @@ module.exports = JSON.parse('{"application/1d-interleaved-parityfec":{"source":"
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	(() => {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__nccwpck_require__.n = (module) => {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				() => (module['default']) :
-/******/ 				() => (module);
-/******/ 			__nccwpck_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/define property getters */
-/******/ 	(() => {
-/******/ 		// define getter functions for harmony exports
-/******/ 		__nccwpck_require__.d = (exports, definition) => {
-/******/ 			for(var key in definition) {
-/******/ 				if(__nccwpck_require__.o(definition, key) && !__nccwpck_require__.o(exports, key)) {
-/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
-/******/ 				}
-/******/ 			}
-/******/ 		};
-/******/ 	})();
-/******/ 	
-/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
-/******/ 	(() => {
-/******/ 		__nccwpck_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
-/******/ 	})();
-/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	(() => {
 /******/ 		// define __esModule on exports
@@ -34527,26 +34498,24 @@ var __webpack_exports__ = {};
 "use strict";
 __nccwpck_require__.r(__webpack_exports__);
 /* harmony import */ var _redirectChecker__WEBPACK_IMPORTED_MODULE_0__ = __nccwpck_require__(8899);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1__ = __nccwpck_require__(2186);
-/* harmony import */ var _actions_core__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__nccwpck_require__.n(_actions_core__WEBPACK_IMPORTED_MODULE_1__);
 /*
  * Copyright 2024 steadybit GmbH. All rights reserved.
  */
 
 
+const core = __nccwpck_require__(2186);
 
-
-const publicDocsURL = _actions_core__WEBPACK_IMPORTED_MODULE_1___default().getInput('publicDocsURL');
-const gitBookConfigurationURL = _actions_core__WEBPACK_IMPORTED_MODULE_1___default().getInput('gitBookConfigurationURL');
-const logger = { debug: (_actions_core__WEBPACK_IMPORTED_MODULE_1___default().debug), info: (_actions_core__WEBPACK_IMPORTED_MODULE_1___default().info), error: (_actions_core__WEBPACK_IMPORTED_MODULE_1___default().error) };
+const publicDocsURL = core.getInput('publicDocsURL');
+const gitBookConfigurationURL = core.getInput('gitBookConfigurationURL');
+const logger = { debug: core.debug, info: core.info, error: core.error };
 
 (0,_redirectChecker__WEBPACK_IMPORTED_MODULE_0__/* .check */ .B)(publicDocsURL, gitBookConfigurationURL, logger)
     .then((brokenUrls) => {
         if (brokenUrls) {
-            _actions_core__WEBPACK_IMPORTED_MODULE_1___default().setFailed(`Found non-working redirects, check the logs`);
+            core.setFailed(`Found non-working redirects, check the logs`);
         }
     })
-    .catch((result) => _actions_core__WEBPACK_IMPORTED_MODULE_1___default().setFailed(`Uncatched error happened: ${result}`));
+    .catch((result) => core.setFailed(`Uncatched error happened: ${result}`));
 
 })();
 

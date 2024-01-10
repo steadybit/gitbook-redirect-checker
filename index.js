@@ -3,7 +3,7 @@
  */
 
 import { check } from './redirectChecker';
-import core from '@actions/core';
+const core = require('@actions/core');
 
 const publicDocsURL = core.getInput('publicDocsURL');
 const gitBookConfigurationURL = core.getInput('gitBookConfigurationURL');
