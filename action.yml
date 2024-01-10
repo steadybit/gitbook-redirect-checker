@@ -1,0 +1,14 @@
+name: 'gitbook-redirect-checker'
+description: 'Reads gitbook redirect configuration and checks for broken links'
+inputs:
+    publicDocsURL:
+        description: 'Public URL to the docs (e.g. https://docs.steadybit.com)'
+        required: false
+        default: 'https://docs.steadybit.com'
+    gitBookConfigurationURL:
+        description: 'URL to the redirect configuration file .gitbook.yml'
+        required: false
+        default: 'https://raw.githubusercontent.com/steadybit/docs-public/main/.gitbook.yml'
+runs:
+    using: 'node16'
+    main: 'dist/index.js'
